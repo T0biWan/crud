@@ -1,0 +1,44 @@
+{
+  "properties": {
+    "id": {
+      "type": "Number",
+      "required": true,
+      "description": ""
+    },
+    "firstname": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "lastname": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "email": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "street": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "postcode": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "city": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    },
+    "country": {
+      "type": "String",
+      "required": false,
+      "description": ""
+    }
+  }
+}
