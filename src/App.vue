@@ -8,15 +8,17 @@
   </nav>
 
   <form>
-    <template v-for="(propertie, key) in presentedModel.properties" v-if="propertie.editable">
-      <label v-bind:for="key">{{key}}:</label>
-      <input v-bind:name="key" v-bind:type="getInputType(propertie.type)" v-model="v" />
+    <template v-for="(propertie, key) in activeModel.properties" v-if="propertie.editable">
+      <div v-bind:key="key">
+        <label v-bind:for="key">{{key}}:</label>
+        <input v-bind:name="key" v-bind:type="getInputType(propertie.type)" v-model="v" />
+      </div>
     </template>
   </form>
 
   <table>
     <thead>
-      <tr><th v-for="(propertie, key) in presentedModel.properties">{{key}}</th></tr>
+      <tr><th v-for="(propertie, key) in activeModel.properties" v-bind:key="key">{{key}}</th></tr>
     </thead>
     <tbody>
       <tr><td></td></tr>
@@ -27,6 +29,7 @@
 
 <script>
 // todo: laden der models in andere datei auslagern
+import controller from '@/controllers/nedb.js'
 import customerModel from '@/models/customer.json'
 import orderModel from '@/models/order.json'
 
@@ -39,9 +42,13 @@ export default {
       // todo: laden der models in andere datei auslagern, in config angeben welche geladen werden sollen
       customerModel,
       orderModel,
-      presentedModel: customerModel,
-      models: [customerModel, orderModel]
+      models: [customerModel, orderModel],
+      activeModel: customerModel
     }
+  },
+
+  created () {
+    controller.connect('./datastore.db') // todo: in config file auslagern
   },
 
   methods: {
@@ -52,8 +59,8 @@ export default {
     },
 
     setActiveModel (model) {
-      this.presentedModel = model
-    },
+      this.activeModel = model
+    }
   }
 }
 </script>
