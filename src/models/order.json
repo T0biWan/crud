@@ -1,5 +1,5 @@
 {
-  "name": "customer",
+  "name": "order",
   "properties": {
     "id": {
       "type": "number",
@@ -7,44 +7,26 @@
       "editable": false,
       "description": ""
     },
-    "firstname": {
+    "product": {
       "type": "string",
       "required": false,
       "editable": true,
       "description": ""
     },
-    "lastname": {
+    "quantity": {
+      "type": "number",
+      "required": false,
+      "editable": true,
+      "description": ""
+    },
+    "customer": {
       "type": "string",
       "required": false,
       "editable": true,
       "description": ""
     },
-    "email": {
-      "type": "string",
-      "required": false,
-      "editable": true,
-      "description": ""
-    },
-    "street": {
-      "type": "string",
-      "required": false,
-      "editable": true,
-      "description": ""
-    },
-    "postcode": {
-      "type": "string",
-      "required": false,
-      "editable": true,
-      "description": ""
-    },
-    "city": {
-      "type": "string",
-      "required": false,
-      "editable": true,
-      "description": ""
-    },
-    "country": {
-      "type": "string",
+    "payed": {
+      "type": "boolean",
       "required": false,
       "editable": true,
       "description": ""
