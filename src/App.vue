@@ -7,11 +7,11 @@
     </ul>
   </nav>
 
-  <form>
+  <form v-on:submit.prevent="submit">
     <template v-for="(propertie, key) in activeModel.properties" v-if="propertie.editable">
       <div v-bind:key="key">
         <label v-bind:for="key">{{key}}:</label>
-        <input v-bind:name="key" v-bind:type="getInputType(propertie.type)" v-model="v" />
+        <input v-bind:name="key" v-bind:type="getInputType(propertie.type)"/>
       </div>
     </template>
   </form>
@@ -28,8 +28,10 @@
 </template>
 
 <script>
+import config from '../configuration.json'
 // todo: laden der models in andere datei auslagern
-import controller from '@/controllers/nedb.js'
+// import controller from '@/controllers/nedb.js'
+import controller from '@/controllers/strapi.js'
 import customerModel from '@/models/customer.json'
 import orderModel from '@/models/order.json'
 
@@ -40,15 +42,20 @@ export default {
   data () {
     return {
       // todo: laden der models in andere datei auslagern, in config angeben welche geladen werden sollen
+      config,
       customerModel,
       orderModel,
       models: [customerModel, orderModel],
-      activeModel: customerModel
+      activeModel: customerModel,
+      isUpdating: false,
+      updateIndex: -1
     }
   },
 
   created () {
-    controller.connect('./datastore.db') // todo: in config file auslagern
+    // controller.connect('./datastore.db') // todo: in config file auslagern für nedb
+    console.log('controller.getAll()')
+    console.log(controller.getAll("order"))
   },
 
   methods: {
@@ -60,6 +67,20 @@ export default {
 
     setActiveModel (model) {
       this.activeModel = model
+    },
+
+    submit () {
+      // if (this.updating) {
+      //   this.onUpdate()
+      //   return
+      // }
+      // this.books.push(this.book)
+      // this.book = {
+      //   title: '',
+      //   year: '',
+      //   author: '',
+      //   read: false
+      // }
     }
   }
 }

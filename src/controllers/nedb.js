@@ -35,17 +35,21 @@ const controller = {
 
   disconnect () {},
 
-  create (doc) {
-    // https://github.com/louischatriot/nedb/
+  create (document) {
+    db.insert(document)
   },
 
-  getEntry (id) {
+  get (id) {
 
   },
 
-  getEntrys () {
+  getAll () {
+    return db.find({}, function (err, docs) {return docs})
+  },
 
-  }
+  search () {},
+  edit () {},
+  delete () {}
 }
 
 export default controller
